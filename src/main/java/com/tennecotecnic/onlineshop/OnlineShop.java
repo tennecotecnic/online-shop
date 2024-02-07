@@ -10,17 +10,8 @@ import java.io.InputStreamReader;
 public class OnlineShop {
     public static void main(String[] args) {
 
-        UserInMemoryRepository userInMemoryRepository = new UserInMemoryRepository();
-        userInMemoryRepository.usersRepository.put(1, new User());
-        userInMemoryRepository.usersRepository.put(2, new User());
-        userInMemoryRepository.usersRepository.put(3, new User());
-        userInMemoryRepository.usersRepository.put(4, new User());
-        userInMemoryRepository.usersRepository.put(5, new User());
-        userInMemoryRepository.usersRepository.put(6, new User());
-        userInMemoryRepository.usersRepository.put(7, new User());
-        userInMemoryRepository.usersRepository.put(8, new User());
-        userInMemoryRepository.usersRepository.put(9, new User());
-        userInMemoryRepository.usersRepository.put(10, new User());
+        var userInMemoryRepository = new UserInMemoryRepository();
+        var userList = userInMemoryRepository.findAll();
 
         System.out.println("Введите логин: ");
         try {
