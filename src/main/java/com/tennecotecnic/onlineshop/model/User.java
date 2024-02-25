@@ -1,6 +1,8 @@
 package com.tennecotecnic.onlineshop.model;
+import com.tennecotecnic.onlineshop.repository.UserInMemoryRepository;
 import java.time.Instant;
 public class User {
+
 
     private Integer id;
     private String name;
@@ -13,7 +15,6 @@ public class User {
     private Instant createdAt;
 
 
-
     public User(Integer id, String name, String surName, String e_mail, Integer birthYear, Sex sex) {
         this.id = id;
         this.name = name;
@@ -22,7 +23,10 @@ public class User {
         this.birthYear = birthYear;
         this.sex = sex;
     }
-    public User(Integer id) {this.id = id;}
+
+    public User(String name) {
+        this.name = name;
+    }
     public User() {}
 
 
@@ -96,5 +100,9 @@ public class User {
         this.averagePurchasesPerDay = averagePurchasesPerDay;
     }
 
+    @Override
+    public String toString() {
+        return "{\"id\":" + id +",\"name\":\"" + name + "\",\"surName\":\"" + surName + "\",\"e_mail\":\"" + e_mail + "\",\"birthYear\":" + birthYear + ",\"sex\":\"" + sex + "\",\"totalPurchasesCount\":" + totalPurchasesCount + ",\"averagePurchasesPerDay\":" + averagePurchasesPerDay + "}";
+    }
 
 }
