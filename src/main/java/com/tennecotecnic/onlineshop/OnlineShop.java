@@ -9,12 +9,8 @@ public class OnlineShop {
     public static void main(String[] args)  throws Exception {
 
         UserInMemoryRepository userInMemoryRepository = new UserInMemoryRepository();
+        ReadData.readData();
 
-        UserInMemoryRepository.create(new User("Pablo"));
-        UserInMemoryRepository.create(new User("Emilia"));
-        System.out.println("inter your userData");
-        CmdController.userDataProcessing(ReadData.readData());
-        userInMemoryRepository.print(UserInMemoryRepository.dataBase);
 
 
 

@@ -5,18 +5,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ReadData {
-    public static String readData() {
+    public static void readData() throws Exception {
         String data ="";
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
             while(true) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 data = reader.readLine();
-                reader.close();
+                CmdController.userDataProcessing(data);
             }
         }
         catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return data;
+        reader.close();
     }
 }

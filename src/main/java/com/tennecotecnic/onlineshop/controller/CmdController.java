@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 public class CmdController {
 
 
-    public static void userDataProcessing(String data) throws  IOException, JsonMappingException {
+     static void userDataProcessing(String data) throws  IOException, JsonMappingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String [] array = data.split("\\?");
         switch (array[0])  {
@@ -37,5 +37,4 @@ public class CmdController {
                 System.out.println("Invalid command!");
         }
     }
-
 }

@@ -6,8 +6,8 @@ public class User {
 
     private Integer id;
     private String name;
-    private String surName;
-    private String e_mail;
+    private String surname;
+    private String email;
     private Integer birthYear;
     private Sex sex;
     private Integer totalPurchasesCount;
@@ -18,8 +18,8 @@ public class User {
     public User(Integer id, String name, String surName, String e_mail, Integer birthYear, Sex sex) {
         this.id = id;
         this.name = name;
-        this.surName = surName;
-        this.e_mail = e_mail;
+        this.surname = surName;
+        this.email = e_mail;
         this.birthYear = birthYear;
         this.sex = sex;
     }
@@ -49,19 +49,19 @@ public class User {
 
 
     public String getSurName() {
-        return surName;
+        return surname;
     }
     public void setSurName(String surName) {
-        this.surName = surName;
+        this.surname = surName;
     }
 
 
 
     public String getE_mail() {
-        return e_mail;
+        return email;
     }
     public void setE_mail(String e_mail) {
-        this.e_mail = e_mail;
+        this.email = e_mail;
     }
 
 
@@ -102,7 +102,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "{\"id\":" + id +",\"name\":\"" + name + "\",\"surName\":\"" + surName + "\",\"e_mail\":\"" + e_mail + "\",\"birthYear\":" + birthYear + ",\"sex\":\"" + sex + "\",\"totalPurchasesCount\":" + totalPurchasesCount + ",\"averagePurchasesPerDay\":" + averagePurchasesPerDay + "}";
+        return "{\"id\":" + id +",\"name\":\"" + name + "\",\"surName\":\"" + surname + "\",\"e_mail\":\"" + email + "\",\"birthYear\":" + birthYear + ",\"sex\":\"" + sex + "\",\"totalPurchasesCount\":" + totalPurchasesCount + ",\"averagePurchasesPerDay\":" + averagePurchasesPerDay + "}";
     }
 
 }
