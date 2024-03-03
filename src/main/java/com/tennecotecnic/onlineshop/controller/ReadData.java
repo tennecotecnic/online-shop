@@ -4,14 +4,26 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+
 public class ReadData {
-    public static void readData() throws Exception {
-        String data ="";
+
+    CmdController cmdController = new CmdController();
+    ProductController productController = new ProductController();
+
+    public void readData() throws Exception {
+        String data;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
-            while(true) {
+            while (true) {
+                System.out.println("Enter the command");
                 data = reader.readLine();
-                CmdController.userDataProcessing(data);
+                String[] array = data.split("/");
+                if (array[0].equals("user")) {
+                    cmdController.userDataProcessing(data);
+                } else if (array[0].equals("product")) {
+                    productController.productDataProcessing(data);
+                } else System.out.println("Invalid command");
+
             }
         }
         catch (IOException e) {

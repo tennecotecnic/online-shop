@@ -1,5 +1,5 @@
 package com.tennecotecnic.onlineshop.model;
-import com.tennecotecnic.onlineshop.repository.UserInMemoryRepository;
+
 import java.time.Instant;
 public class User {
 
@@ -15,11 +15,11 @@ public class User {
     private Instant createdAt;
 
 
-    public User(Integer id, String name, String surName, String e_mail, Integer birthYear, Sex sex) {
+    public User(Integer id, String name, String surname, String email, Integer birthYear, Sex sex) {
         this.id = id;
         this.name = name;
-        this.surname = surName;
-        this.email = e_mail;
+        this.surname = surname;
+        this.email = email;
         this.birthYear = birthYear;
         this.sex = sex;
     }
@@ -29,60 +29,53 @@ public class User {
     }
     public User() {}
 
-
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
 
-
-
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
 
-
-
-    public String getSurName() {
+    public String getSurname() {
         return surname;
     }
-    public void setSurName(String surName) {
-        this.surname = surName;
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-
-
-    public String getE_mail() {
+    public String getEmail() {
         return email;
     }
-    public void setE_mail(String e_mail) {
-        this.email = e_mail;
+
+    public void setEmail(String email) {
+        this.email = email;
     }
-
-
 
     public Integer getBirthYear() {
         return birthYear;
     }
+
     public void setBirthYear(Integer birthYear) {
         this.birthYear = birthYear;
     }
 
-
-
     public Sex getSex() {
         return sex;
     }
+
     public void setSex(Sex sex) {
         this.sex = sex;
     }
-
-
 
     public Integer getTotalPurchasesCount() {
         return totalPurchasesCount;
@@ -102,7 +95,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "{\"id\":" + id +",\"name\":\"" + name + "\",\"surName\":\"" + surname + "\",\"e_mail\":\"" + email + "\",\"birthYear\":" + birthYear + ",\"sex\":\"" + sex + "\",\"totalPurchasesCount\":" + totalPurchasesCount + ",\"averagePurchasesPerDay\":" + averagePurchasesPerDay + "}";
+        return "{\"id\":" + id + ",\"name\":\"" + name + "\",\"surname\":\"" + surname + "\",\"email\":\"" + email + "\",\"birthYear\":" + birthYear + ",\"sex\":\"" + sex + "\",\"totalPurchasesCount\":" + totalPurchasesCount + ",\"averagePurchasesPerDay\":" + averagePurchasesPerDay + "}";
     }
 
 }

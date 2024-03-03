@@ -1,40 +1,43 @@
 package com.tennecotecnic.onlineshop.controller;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tennecotecnic.onlineshop.model.User;
 import com.tennecotecnic.onlineshop.repository.UserInMemoryRepository;
+import com.tennecotecnic.onlineshop.repository.UserRepository;
+import com.tennecotecnic.onlineshop.util.PrintUtil;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
+import static com.tennecotecnic.onlineshop.OnlineShop.objectMapper;
 
 public class CmdController {
 
 
-     static void userDataProcessing(String data) throws  IOException, JsonMappingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String [] array = data.split("\\?");
-        switch (array[0])  {
-            case("user/create"):
+    private final UserRepository userRepository = new UserInMemoryRepository();
+
+
+    void userDataProcessing(String data) throws IOException {
+
+        String[] array = data.split("\\?");
+        switch (array[0]) {
+            case ("user/create"):
                 User user = objectMapper.readValue(array[1], User.class);
-                UserInMemoryRepository.create(user);
+                userRepository.create(user);
                 break;
-            case("user/getAll"):
-                System.out.println(UserInMemoryRepository.findAll());
+            case ("user/getAll"):
+                PrintUtil.printUsers(userRepository.findAll());
                 break;
-            case("user/get"):
-                System.out.println(UserInMemoryRepository.findById(Integer.parseInt(array[1])));
+            case ("user/get"):
+                System.out.println(userRepository.findById(Integer.parseInt(array[1])));
                 break;
-            case("user/delete"):
-                UserInMemoryRepository.delete(Integer.parseInt(array[1]));
+            case ("user/delete"):
+                userRepository.delete(Integer.parseInt(array[1]));
                 break;
-            case("user/update"):
+            case ("user/update"):
                 User user1 = objectMapper.readValue(array[1], User.class);
-                UserInMemoryRepository.update(user1);
+                userRepository.update(user1);
                 break;
             default:
-                System.out.println("Invalid command!");
+                System.out.println("Invalid command for UsersRepository");
         }
     }
 }
