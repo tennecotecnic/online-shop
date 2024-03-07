@@ -1,16 +1,16 @@
 package com.tennecotecnic.onlineshop.controller;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-public class ReadData {
+public class CmdReader {
 
-    CmdController cmdController = new CmdController();
+    UserController userController = new UserController();
     ProductController productController = new ProductController();
 
-    public void readData() throws Exception {
+
+    public void readFromCmd() throws Exception {
         String data;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
@@ -18,17 +18,15 @@ public class ReadData {
                 System.out.println("Enter the command");
                 data = reader.readLine();
                 String[] array = data.split("/");
-                if (array[0].equals("user")) {
-                    cmdController.userDataProcessing(data);
-                } else if (array[0].equals("product")) {
-                    productController.productDataProcessing(data);
-                } else System.out.println("Invalid command");
-
+                switch (array[0]) {
+                    case ("user") -> userController.processCommand(data);
+                    case ("product") -> productController.processCommand(data);
+                }
             }
-        }
-        catch (IOException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         reader.close();
     }
+
 }

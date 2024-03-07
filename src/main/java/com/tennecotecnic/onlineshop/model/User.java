@@ -22,6 +22,7 @@ public class User {
         this.email = email;
         this.birthYear = birthYear;
         this.sex = sex;
+        this.createdAt = Instant.now();
     }
 
     public User(String name) {
@@ -80,15 +81,23 @@ public class User {
     public Integer getTotalPurchasesCount() {
         return totalPurchasesCount;
     }
+
     public void setTotalPurchasesCount(Integer totalPurchasesCount) {
         this.totalPurchasesCount = totalPurchasesCount;
     }
 
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
 
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public Integer getAveragePurchasesPerDay() {
         return averagePurchasesPerDay;
     }
+
     public void setAveragePurchasesPerDay(Integer averagePurchasesPerDay) {
         this.averagePurchasesPerDay = averagePurchasesPerDay;
     }
