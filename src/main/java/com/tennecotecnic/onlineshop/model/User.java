@@ -13,6 +13,8 @@ public class User {
     private Integer totalPurchasesCount;
     private Integer averagePurchasesPerDay;
     private Instant createdAt;
+    private Instant updatedAt;
+
 
 
     public User(Integer id, String name, String surname, String email, Integer birthYear, Sex sex) {
@@ -100,6 +102,14 @@ public class User {
 
     public void setAveragePurchasesPerDay(Integer averagePurchasesPerDay) {
         this.averagePurchasesPerDay = averagePurchasesPerDay;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @Override

@@ -1,55 +1,77 @@
 package com.tennecotecnic.onlineshop.model;
 
-public class Product {
-    public String nameOfProduct;
-    public float priceOfProduct;
-    private float quantityInStock;
-    public String units;          //единицы измерения
+import com.tennecotecnic.onlineshop.util.TimeFormatUtil;
 
-    public Product(String name, float price, float quantity, String units) {
-        nameOfProduct = name;
-        priceOfProduct = price;
-        quantityInStock = quantity;
-        this.units = units;
+import java.time.Instant;
+
+public abstract class Product {
+
+
+    private Integer id;
+    private Category category;
+    private float price;
+    private Instant createdAt;
+    private Instant updatedAt;
+    public Integer updatedBy;
+
+
+    public Product(Integer id, Category category, float price) {
+        this.id = id;
+        this.category = category;
+        this.price = price;
+        this.createdAt = TimeFormatUtil.timeFormatSetting();
+        this.updatedAt = TimeFormatUtil.timeFormatSetting();
     }
 
-    public Product() {
+    public Product() {}
+
+
+    public Integer getId() {
+        return id;
     }
 
-    public String getNameOfProduct() {
-        return nameOfProduct;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setNameOfProduct(String nameOfProduct) {
-        this.nameOfProduct = nameOfProduct;
+    public Category getCategory() {
+        return category;
     }
 
-    public float getPriceOfProduct() {
-        return priceOfProduct;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public void setPriceOfProduct(float priceOfProduct) {
-        this.priceOfProduct = priceOfProduct;
+    public float getPrice() {
+        return price;
     }
 
-    public float getQuantityInStock() {
-        return quantityInStock;
+    public void setPrice(float price) {
+        this.price = price;
     }
 
-    public void setQuantityInStock(float quantityInStock) {
-        this.quantityInStock = quantityInStock;
+    public Instant getCreatedAt() {
+        return createdAt;
     }
 
-    public String getUnits() {
-        return units;
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public void setUnits(String units) {
-        this.units = units;
+    public Instant getUpdatedAt() {
+        return updatedAt;
     }
 
-    @Override
-    public String toString() {
-        return "{\"name\":" + nameOfProduct + ",\"price\":\"" + priceOfProduct + "\",\"quantity\":\"" + quantityInStock + "\",\"units\":\"" + units + "}";
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
     }
+
+    public Integer getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Integer updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
 }

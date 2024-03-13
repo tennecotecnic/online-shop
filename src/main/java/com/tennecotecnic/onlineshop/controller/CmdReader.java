@@ -21,6 +21,7 @@ public class CmdReader {
                 switch (array[0]) {
                     case ("user") -> userController.processCommand(data);
                     case ("product") -> productController.processCommand(data);
+                    default -> System.out.println("invalid command");
                 }
             }
         } catch (Exception e) {

@@ -1,7 +1,7 @@
 package com.tennecotecnic.onlineshop.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.tennecotecnic.onlineshop.model.User;
+import com.tennecotecnic.onlineshop.model.Product;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,75 +12,75 @@ import java.util.Collection;
 
 import static com.tennecotecnic.onlineshop.OnlineShop.objectMapper;
 
-public class UserFileRepository implements UserRepository {
+public class ProductFileRepository  implements  ProductRepository {
+    private final String FINAL_NAME = "d:\\Projects\\online-shop\\productfilerepository.txt";
 
-    private final String FINAL_NAME = "d:\\Projects\\online-shop\\usersfilerepository.txt";
     private Integer currentIdGeneratorValue;
-    private StringBuilder listBeforeCreateNewUser = new StringBuilder();
+    private StringBuilder listBeforeCreateNewProduct = new StringBuilder();
 
 
-    public void create(User user) {
+    public void create(Product product) {
         generateId();
-        user.setId(currentIdGeneratorValue);
+        product.setId(currentIdGeneratorValue);
 
         try {
-            writeToFile(listBeforeCreateNewUser.append(objectMapper.writeValueAsString(user))
+            writeToFile(listBeforeCreateNewProduct.append(objectMapper.writeValueAsString(product))
                     .append("\r\n").append("###").append(++currentIdGeneratorValue));
-            listBeforeCreateNewUser.delete(0, listBeforeCreateNewUser.length());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+        listBeforeCreateNewProduct.delete(0, listBeforeCreateNewProduct.length());
     }
 
 
-    public Collection<User> findAll() {
-        Collection<User> userList = new ArrayList<>();
+    public Collection<Product> findAll() {
+        Collection<Product> productList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FINAL_NAME))) {
-            String userLine;
-            while ((userLine = reader.readLine()) != null) {
-                User user = objectMapper.readValue(userLine, User.class);
-                userList.add(user);
+            String productLine;
+            while ((productLine = reader.readLine()) != null) {
+                Product product = objectMapper.readValue(productLine, Product.class);
+                productList.add(product);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return userList;
+        return productList;
     }
 
 
-    public User findById(Integer id) {
-        boolean isUserFound = false;
-        User user = null;
+    public Product findById(Integer id) {
+        boolean isProductFound = false;
+        Product product = null;
         String line;
         try (BufferedReader reader = new BufferedReader(new FileReader(FINAL_NAME))) {
-            while (!isUserFound) {
+            while (!isProductFound) {
                 line = reader.readLine();
-                user = objectMapper.readValue(line, User.class);
-                if ((user.getId()).equals(id)) {
-                    isUserFound = true;
+                product = objectMapper.readValue(line, Product.class);
+                if ((product.getId()).equals(id)) {
+                    isProductFound = true;
                 }
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
-        return user;
+        return product;
     }
 
 
-    public void update(User user) {
+    public void update(Product product) {
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FINAL_NAME))) {
 
-            String userToWriteLine = objectMapper.writeValueAsString(user);
+            String productToWriteLine = objectMapper.writeValueAsString(product);
 
-            String userReadLine;
-            while ((userReadLine = bufferedReader.readLine()) != null) {
-                User userFound = objectMapper.readValue(userReadLine, User.class);
-                if ((user.getId()).equals(userFound.getId())) {
-                    stringBuilder.append(userReadLine.replace(userReadLine, userToWriteLine)).append("\r\n");
+            String productReadLine;
+            while ((productReadLine = bufferedReader.readLine()) != null) {
+                Product productFound = objectMapper.readValue(productReadLine, Product.class);
+                if ((product.getId()).equals(productFound.getId())) {
+                    stringBuilder.append(productReadLine.replace(productReadLine, productToWriteLine)).append("\r\n");
                 } else {
-                    stringBuilder.append(userReadLine).append("\r\n");
+                    stringBuilder.append(productReadLine).append("\r\n");
                 }
             }
         } catch (IOException e) {
@@ -93,11 +93,11 @@ public class UserFileRepository implements UserRepository {
     public void delete(Integer id) {
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FINAL_NAME))) {
-            String userLine;
-            while ((userLine = bufferedReader.readLine()) != null) {
-                User user = objectMapper.readValue(userLine, User.class);
-                if (!(user.getId()).equals(id)) {
-                    stringBuilder.append(userLine).append("\r\n");
+            String productLine;
+            while ((productLine = bufferedReader.readLine()) != null) {
+                Product product = objectMapper.readValue(productLine, Product.class);
+                if (!(product.getId()).equals(id)) {
+                    stringBuilder.append(productLine).append("\r\n");
                 }
             }
         } catch (IOException e) {
@@ -117,18 +117,19 @@ public class UserFileRepository implements UserRepository {
     private void generateId() {
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FINAL_NAME))) {
-            String userLine;
-            while ((userLine = bufferedReader.readLine()) != null) {
-                stringBuilder.append(userLine).append("\r\n");
-                }
+            String productLine;
+            while ((productLine = bufferedReader.readLine()) != null) {
+                stringBuilder.append(productLine).append("\r\n");
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        String allUsers = stringBuilder.toString();
-        String [] idSetter = allUsers.split("###");
+        String fullFile = stringBuilder.toString();
+        String [] idSetter = fullFile.split("###");
         String [] idSetterArgument = idSetter[1].split("\r\n");
         currentIdGeneratorValue = Integer.parseInt(idSetterArgument[0]);
-        listBeforeCreateNewUser.append(idSetter[0]);
+        listBeforeCreateNewProduct.append(idSetter[0]);
     }
 
 }
+
