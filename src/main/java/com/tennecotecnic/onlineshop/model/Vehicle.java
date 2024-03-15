@@ -6,20 +6,20 @@ public abstract class Vehicle  extends Product {
     private String brand;
     private String model;
     private Integer maxSpeed;
-    private VihicleEnergyType energyType;
-    private VihicleType vihicleType;
+    private VehicleEnergyType energyType;
+    private VehicleType vehicleType;
 
 
     public Vehicle(Integer id, Category category, float price, Integer weight,
-                   String brand, String model, Integer maxSpeed, VihicleEnergyType energyType,
-                   VihicleType vihicleType) {
+                   String brand, String model, Integer maxSpeed, VehicleEnergyType energyType,
+                   VehicleType vehicleType) {
         super(id, category, price);
         this.weight = weight;
         this.brand = brand;
         this.model = model;
         this.maxSpeed = maxSpeed;
         this.energyType = energyType;
-        this.vihicleType = vihicleType;
+        this.vehicleType = vehicleType;
     }
 
     public Vehicle (){
@@ -57,19 +57,19 @@ public abstract class Vehicle  extends Product {
         this.maxSpeed = maxSpeed;
     }
 
-    public VihicleEnergyType getEnergyType() {
+    public VehicleEnergyType getEnergyType() {
         return energyType;
     }
 
-    public void setEnergyType(VihicleEnergyType energyType) {
+    public void setEnergyType(VehicleEnergyType energyType) {
         this.energyType = energyType;
     }
 
-    public VihicleType getVihicleType() {
-        return vihicleType;
+    public VehicleType getVehicleType() {
+        return vehicleType;
     }
 
-    public void setVihicleType(VihicleType vihicleType) {
-        this.vihicleType = vihicleType;
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
     }
 }

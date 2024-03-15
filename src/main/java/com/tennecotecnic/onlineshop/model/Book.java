@@ -48,7 +48,7 @@ public class Book extends Product {
     public String toString() {
         return "{\"id\":" + getId() + ",\"category\":\"" + getCategory() + "\",\"price\":" + getPrice()
                 + ",\"isbn\":\"" + isbn + "\",\"author\":\"" + author
-                + "\",\"title\":\"" + title +   "\",\"createdAt\":\"" + getCreatedAt()
-                + "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
+                + "\",\"title\":\"" + title + "\"}";
+                //+ "\",\"createdAt\":\"" + getCreatedAt() + "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
     }
 }

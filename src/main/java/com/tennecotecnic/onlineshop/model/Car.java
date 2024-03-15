@@ -6,8 +6,8 @@ public class Car  extends  Vehicle {
 
 
     public Car(Integer id, Category category, float price, Integer weight, String brand,
-               String model, Integer maxSpeed, VihicleEnergyType energyType, VihicleType vihicleType, String bodyType) {
-        super(id, category, price, weight, brand, model, maxSpeed, energyType, vihicleType);
+               String model, Integer maxSpeed, VehicleEnergyType energyType, VehicleType vehicleType, String bodyType) {
+        super(id, category, price, weight, brand, model, maxSpeed, energyType, vehicleType);
         this.bodyType = bodyType;
     }
 
@@ -29,7 +29,8 @@ public class Car  extends  Vehicle {
                 + ",\"weight\":" + getWeight() + ",\"brand\":\"" + getBrand()
                 + "\",\"model\":\"" + getModel() + "\",\"maxSpeed\":" + getMaxSpeed()
                 + ",\"energyType\":\"" + getEnergyType() + "\",\"bodyType\":\"" + bodyType
-                + "\",\"createdAt\":\"" + getCreatedAt() + "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
+                + "\",\"vehicleType\":\"" + getVehicleType() + "\"}";
+               // + "\",\"createdAt\":\"" + getCreatedAt() + "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
     }
 
 }

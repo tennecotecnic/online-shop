@@ -8,9 +8,9 @@ public class Moto extends Vehicle {
 
 
     public Moto(Integer id, Category category, float price, Integer weight, String brand,
-                String model, Integer maxSpeed, VihicleEnergyType energyType, VihicleType vihicleType, Integer wheelCount,
+                String model, Integer maxSpeed, VehicleEnergyType energyType, VehicleType vehicleType, Integer wheelCount,
                 boolean withSidecar) {
-        super(id, category, price, weight, brand, model, maxSpeed, energyType, vihicleType);
+        super(id, category, price, weight, brand, model, maxSpeed, energyType, vehicleType);
         this.wheelCount = wheelCount;
         this.withSidecar = withSidecar;
     }
@@ -39,6 +39,7 @@ public class Moto extends Vehicle {
                 + ",\"weight\":" + getWeight() + ",\"brand\":\"" + getBrand()
                 + "\",\"model\":\"" + getModel() + "\",\"maxSpeed\":" + getMaxSpeed()
                 + ",\"energyType\":\"" + getEnergyType() + "\",\"wheelCount\":" + wheelCount
-                + ",\"withSideCar\":" + withSidecar + ",\"createdAt\":\"" + getCreatedAt() +  "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
+                + ",\"withSideCar\":" + withSidecar + "\",\"vehicleType\":\"" + getVehicleType() + "\"}";
+                //+ ",\"createdAt\":\"" + getCreatedAt() +  "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
     }
 }

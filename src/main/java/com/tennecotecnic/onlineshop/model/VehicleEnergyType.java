@@ -1,6 +1,6 @@
 package com.tennecotecnic.onlineshop.model;
 
-public enum VihicleEnergyType {
+public enum VehicleEnergyType {
 
     ELECTRIC,
     FUEL;

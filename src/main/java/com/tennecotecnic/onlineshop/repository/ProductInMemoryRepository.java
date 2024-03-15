@@ -15,11 +15,11 @@ public class ProductInMemoryRepository  implements ProductRepository {
         productById.put(1, new Book(1, Category.BOOK, 12.50f,
                 "5-8451-0512-9", "Joanne Rowling", "Harry Potter and the Philosopher's Stone"));
         productById.put(2, new Car(2, Category.VEHICLE, 250000.0f, 1600,
-                "Ferrari", "F40", 315, VihicleEnergyType.FUEL, VihicleType.CAR, "sportcar"));
+                "Ferrari", "F40", 315, VehicleEnergyType.FUEL, VehicleType.CAR, "sportcar"));
         productById.put(3, new Food(3, Category.FOOD, 4.25f,
                 "spagetti", "Barilla"));
         productById.put(4, new Moto(4, Category.VEHICLE, 25000.0f, 175,
-                "Triumph", "Scrambler", 200, VihicleEnergyType.FUEL, VihicleType.MOTO,
+                "Triumph", "Scrambler", 200, VehicleEnergyType.FUEL, VehicleType.MOTO,
                 2, false));
     }
 

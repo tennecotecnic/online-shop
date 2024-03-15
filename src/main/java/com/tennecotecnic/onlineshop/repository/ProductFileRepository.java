@@ -1,6 +1,7 @@
 package com.tennecotecnic.onlineshop.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.tennecotecnic.onlineshop.model.Food;
 import com.tennecotecnic.onlineshop.model.Product;
 
 import java.io.BufferedReader;

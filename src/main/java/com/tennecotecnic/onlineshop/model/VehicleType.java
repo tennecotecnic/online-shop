@@ -1,6 +1,6 @@
 package com.tennecotecnic.onlineshop.model;
 
-public enum VihicleType {
+public enum VehicleType {
     CAR,
     MOTO
 }

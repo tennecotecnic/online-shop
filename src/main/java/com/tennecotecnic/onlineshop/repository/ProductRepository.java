@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 public interface ProductRepository {
-    void create(Product product) throws IOException;
+    void create (Product product) throws IOException;
 
     Collection<Product> findAll() throws IOException;
 
