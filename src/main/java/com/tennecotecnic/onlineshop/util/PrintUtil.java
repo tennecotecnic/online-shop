@@ -14,7 +14,7 @@ public class PrintUtil {
     }
 
 
-    public static void printGoods(Collection<Product> array) {
+    public static void printProducts(Collection<Product> array) {
         for (Product product : array) {
             System.out.println(product);
         }

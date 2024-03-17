@@ -15,15 +15,18 @@ import static com.tennecotecnic.onlineshop.OnlineShop.objectMapper;
 public class UserFileRepository implements UserRepository {
 
     private final String FINAL_NAME = "d:\\Projects\\online-shop\\usersfilerepository.txt";
+    private Integer currentIdGeneratorValue;
+    private StringBuilder listBeforeCreateNewUser = new StringBuilder();
 
 
     public void create(User user) {
+        generateId();
+        user.setId(currentIdGeneratorValue);
+
         try {
-            writeToFile(
-                    new StringBuilder(
-                            objectMapper.writeValueAsString(user + "\r\n")
-                    )
-            );
+            writeToFile(listBeforeCreateNewUser.append(objectMapper.writeValueAsString(user))
+                    .append("\r\n").append("###").append(++currentIdGeneratorValue));
+            listBeforeCreateNewUser.delete(0, listBeforeCreateNewUser.length());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -104,11 +107,28 @@ public class UserFileRepository implements UserRepository {
     }
 
     private void writeToFile(StringBuilder stringBuilder) {
-        try (FileWriter fileWriter = new FileWriter(FINAL_NAME)) {
+        try (FileWriter fileWriter = new FileWriter(FINAL_NAME, false)) {
             fileWriter.write(stringBuilder.toString());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void generateId() {
+        StringBuilder stringBuilder = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FINAL_NAME))) {
+            String userLine;
+            while ((userLine = bufferedReader.readLine()) != null) {
+                stringBuilder.append(userLine).append("\r\n");
+                }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        String allUsers = stringBuilder.toString();
+        String [] idSetter = allUsers.split("###");
+        String [] idSetterArgument = idSetter[1].split("\r\n");
+        currentIdGeneratorValue = Integer.parseInt(idSetterArgument[0]);
+        listBeforeCreateNewUser.append(idSetter[0]);
     }
 
 }

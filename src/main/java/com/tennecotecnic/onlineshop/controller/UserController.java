@@ -2,6 +2,7 @@ package com.tennecotecnic.onlineshop.controller;
 
 import com.tennecotecnic.onlineshop.model.User;
 import com.tennecotecnic.onlineshop.repository.UserFileRepository;
+import com.tennecotecnic.onlineshop.repository.UserInMemoryRepository;
 import com.tennecotecnic.onlineshop.repository.UserRepository;
 import com.tennecotecnic.onlineshop.util.PrintUtil;
 
@@ -12,8 +13,9 @@ import static com.tennecotecnic.onlineshop.OnlineShop.objectMapper;
 public class UserController {
 
     private final UserRepository userRepository = new UserFileRepository();
+    //private final UserRepository userRepository = new UserInMemoryRepository();
 
-    void processCommand(String stringFromReader) throws IOException {
+    public void processCommand(String stringFromReader) throws IOException {
         String[] commandAndArgument = stringFromReader.split("\\?");
         switch (commandAndArgument[0]) {
             case ("user/create"):

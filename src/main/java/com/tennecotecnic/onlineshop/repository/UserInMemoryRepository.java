@@ -2,7 +2,7 @@ package com.tennecotecnic.onlineshop.repository;
 
 import com.tennecotecnic.onlineshop.model.Sex;
 import com.tennecotecnic.onlineshop.model.User;
-
+import com.tennecotecnic.onlineshop.util.TimeFormatUtil;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -29,6 +29,8 @@ public class UserInMemoryRepository implements UserRepository {
     public void create(User user) {
         Integer currentId = generateId();
         user.setId(currentId);
+        user.setCreatedAt(TimeFormatUtil.timeFormatSetting());
+        user.setUpdatedAt(TimeFormatUtil.timeFormatSetting());
         userById.put(currentId, user);
     }
 
@@ -44,9 +46,9 @@ public class UserInMemoryRepository implements UserRepository {
 
 
     public void update(User user) {
+        user.setUpdatedAt(TimeFormatUtil.timeFormatSetting());
         userById.put(user.getId(), user);
     }
-
 
     public void delete(Integer id) {
         userById.remove(id);
