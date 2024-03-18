@@ -1,8 +1,9 @@
 package com.tennecotecnic.onlineshop.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.tennecotecnic.onlineshop.model.Food;
-import com.tennecotecnic.onlineshop.model.Product;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.tennecotecnic.onlineshop.model.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -36,18 +37,62 @@ public class ProductFileRepository  implements  ProductRepository {
 
     public Collection<Product> findAll() {
         Collection<Product> productList = new ArrayList<>();
+        Product product = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(FINAL_NAME))) {
             String productLine;
             while ((productLine = reader.readLine()) != null) {
-                Product product = objectMapper.readValue(productLine, Product.class);
-                productList.add(product);
+                if (!productLine.contains("###")) {
+                    JsonNode rootNode = objectMapper.readTree(productLine);
+                    JsonNode categoryNode = rootNode.path("category");
+                    switch (categoryNode.asText()) {
+                        case ("FOOD") -> {
+                            product = objectMapper.readValue(productLine, Food.class);
+                        }
+                        case ("BOOK") -> {
+                            product = objectMapper.readValue(productLine, Book.class);
+                        }
+                        case ("VEHICLE") -> {
+                            JsonNode vehicleTypeNode1 = rootNode.path("vehicleType");
+                            switch (vehicleTypeNode1.asText()) {
+                                case ("CAR") -> {
+                                    product = objectMapper.readValue(productLine, Car.class);
+                                }
+                                case ("MOTO") -> {
+                                    product = objectMapper.readValue(productLine, Moto.class);
+                                }
+                                default -> System.out.println("incorrect vehicle type");
+                            }
+                        }
+                        default -> System.out.println("category not found");
+                    }
+                    productList.add(product);
+                }
             }
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         return productList;
     }
 
+    public Collection<Product> findByCategory(String findCategory) {
+        Collection<Product> foundList = new ArrayList<>();
+        Product product;
+        try (BufferedReader reader = new BufferedReader(new FileReader(FINAL_NAME))) {
+            String productLine;
+            while ((productLine = reader.readLine()) != null) {
+                if (!productLine.contains("###")) {
+                    product = categoryDefinition(productLine, findCategory);
+                    if (product!=null) {
+                        foundList.add(product);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return foundList;
+    }
 
     public Product findById(Integer id) {
         boolean isProductFound = false;
@@ -132,5 +177,47 @@ public class ProductFileRepository  implements  ProductRepository {
         listBeforeCreateNewProduct.append(idSetter[0]);
     }
 
+
+    private Product categoryDefinition(String productLine, String findCategory) throws JsonMappingException, IOException {
+        Product product = null;
+        JsonNode rootNode = objectMapper.readTree(productLine);
+        JsonNode categoryNode = rootNode.path("category");
+        JsonNode vehicleTypeNode = rootNode.path("vehicleType");
+
+        if (findCategory.equals(categoryNode.asText())) {
+            switch (categoryNode.asText()) {
+                case ("FOOD") -> {
+                    product = objectMapper.readValue(productLine, Food.class);
+                }
+                case ("BOOK") -> {
+                    product = objectMapper.readValue(productLine, Book.class);
+                }
+                case ("VEHICLE") -> {
+                    JsonNode vehicleTypeNode1 = rootNode.path("vehicleType");
+                    switch (vehicleTypeNode1.asText()) {
+                        case ("CAR") -> {
+                            product = objectMapper.readValue(productLine, Car.class);
+                        }
+                        case ("MOTO") -> {
+                            product = objectMapper.readValue(productLine, Moto.class);
+                        }
+                        default -> System.out.println("incorrect vehicle type");
+                    }
+                }
+                default -> System.out.println("category not found");
+            }
+        } else if (findCategory.equals(vehicleTypeNode.asText())) {
+            switch (vehicleTypeNode.asText()) {
+                case ("CAR") -> {
+                    product = objectMapper.readValue(productLine, Car.class);
+                }
+                case ("MOTO") -> {
+                    product = objectMapper.readValue(productLine, Moto.class);
+                }
+                default -> System.out.println("incorrect vehicle type");
+            }
+        }
+        return product;
+    }
 }
 
