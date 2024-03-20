@@ -9,6 +9,7 @@ public interface ProductRepository {
     void create (Product product) throws IOException;
 
     Collection<Product> findAll() throws IOException;
+    Collection<Product> findByCategory(String findCategory) throws IOException;
 
     Product findById(Integer id) throws IOException;
 

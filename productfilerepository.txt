@@ -1,0 +1,9 @@
+{"id":1,"category":"BOOK","price":12.5,"isbn":"5-8451-0512-9","author":"Joanne Rowling","title":"Harry Potter and the Philosopher's Stone"}
+{"id":2,"category":"VEHICLE","price":250000.0,"weight":1600,"brand":"Ferrari","model":"F40","maxSpeed":315,"energyType":"FUEL","bodyType":"sportcar","vehicleType":"CAR"}
+{"id":3,"category":"FOOD","price":4.25,"name":"spagetti","brand":"Barilla"}
+{"id":4,"category":"VEHICLE","price":3000.0,"weight":125,"brand":"Suzuki","model":"DRZ200","maxSpeed":130,"energyType":"FUEL","wheelCount":2,"vehicleType":"MOTO"}
+{"id":5,"category":"BOOK","price":35.0,"isbn":"5-8451-0578-9","author":"Stiven Hoking","title":"The universe"}
+{"id":6,"category":"VEHICLE","price":2000.0,"weight":1600,"brand":"Volkswagen","model":"Golf 3","maxSpeed":150,"energyType":"FUEL","bodyType":"hatchback","vehicleType":"CAR"}
+{"id":7,"category":"FOOD","price":7.67,"name":"Fish snacks","brand":"Vici"}
+{"id":8,"category":"VEHICLE","price":25000.0,"weight":175,"brand":"Triumph","model":"Scrambler","maxSpeed":200,"energyType":"FUEL","wheelCount":2,"withSidecar":"true","vehicleType":"MOTO"}
+###9

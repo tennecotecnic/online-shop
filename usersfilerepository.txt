@@ -1,0 +1,11 @@
+{"id":1,"name":"John","surname":"Travolta","email":"john@gmail.com","birthYear":1969,"sex":"MALE","totalPurchasesCount":null,"averagePurchasesPerDay":null}
+{"id":2,"name":"Steeve","surname":"Mcquin","email":"steeve@gmail.com","birthYear":1948,"sex":"MALE","totalPurchasesCount":null,"averagePurchasesPerDay":null}
+{"id":3,"name":"Sunny","surname":"Lane","email":"sun@gmail.com","birthYear":1985,"sex":"FEMALE","totalPurchasesCount":null,"averagePurchasesPerDay":null}
+{"id":4,"name":"Mark","surname":"Marques","email":"marco@gmail.com","birthYear":2000,"sex":"MALE","totalPurchasesCount":null,"averagePurchasesPerDay":null}
+{"id":5,"name":"Inokentij","surname":"Smoktunovsky","email":"kesha@gmail.com","birthYear":1928,"sex":"MALE","totalPurchasesCount":null,"averagePurchasesPerDay":null}
+{"id":6,"name":"Rick","surname":"Sanchez","email":"rik-cucumber@gmail.com","birthYear":1950,"sex":"MALE","totalPurchasesCount":null,"averagePurchasesPerDay":null}
+{"id":7,"name":"Monika","surname":"Belucchi","email":"belka@gmail.com","birthYear":1965,"sex":"FEMALE","totalPurchasesCount":null,"averagePurchasesPerDay":null}
+{"id":8,"name":"Sam","surname":"Vinchester","email":"sammy@gmail.com","birthYear":1985,"sex":"MALE","totalPurchasesCount":null,"averagePurchasesPerDay":null}
+{"id":9,"name":"Din","surname":"Vinchester","email":"din@gmail.com","birthYear":1980,"sex":"MALE","totalPurchasesCount":null,"averagePurchasesPerDay":null}
+{"id":10,"name":"Maria","surname":"Ivanova","email":"masha@gmail.com","birthYear":2005,"sex":"FEMALE","totalPurchasesCount":null,"averagePurchasesPerDay":null}
+###11

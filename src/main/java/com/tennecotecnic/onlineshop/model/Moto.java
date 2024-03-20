@@ -25,7 +25,7 @@ public class Moto extends Vehicle {
         this.wheelCount = wheelCount;
     }
 
-    public boolean isWithSidecar() {
+    public boolean getWithSidecar() {
         return withSidecar;
     }
 
@@ -39,7 +39,7 @@ public class Moto extends Vehicle {
                 + ",\"weight\":" + getWeight() + ",\"brand\":\"" + getBrand()
                 + "\",\"model\":\"" + getModel() + "\",\"maxSpeed\":" + getMaxSpeed()
                 + ",\"energyType\":\"" + getEnergyType() + "\",\"wheelCount\":" + wheelCount
-                + ",\"withSideCar\":" + withSidecar + "\",\"vehicleType\":\"" + getVehicleType() + "\"}";
+                + ",\"withSideсar\":" + withSidecar + ",\"vehicleType\":\"" + getVehicleType() + "\"}";
                 //+ ",\"createdAt\":\"" + getCreatedAt() +  "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
     }
 }

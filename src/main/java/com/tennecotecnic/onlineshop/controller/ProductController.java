@@ -13,13 +13,12 @@ import static com.tennecotecnic.onlineshop.model.Category.FOOD;
 import java.io.IOException;
 
 public class ProductController {
-    //private final ProductRepository productRepository = new ProductInMemoryRepository();
-    private final ProductRepository productRepository = new ProductFileRepository();
-
+//    private final ProductRepository productRepository = new ProductInMemoryRepository();
+ private final ProductRepository productRepository = new ProductFileRepository();
     public void processCommand(String stringFromReader) throws IOException {
         String[] commandWithArgument = stringFromReader.split("\\?");
         switch (commandWithArgument[0]) {
-            case ("product/create"):
+            case ("product/create") -> {
                 JsonNode rootNode = objectMapper.readTree(commandWithArgument[1]);
                 JsonNode categoryNode = rootNode.path("category");
                 switch (categoryNode.asText()) {
@@ -34,33 +33,38 @@ public class ProductController {
                     case ("VEHICLE") -> {
                         JsonNode categoryVihicleNode = rootNode.path("vehicleType");
                         switch (categoryVihicleNode.asText()) {
-                            case ("CAR"):
+                            case ("CAR") -> {
                                 Product car = objectMapper.readValue(commandWithArgument[1], Car.class);
                                 productRepository.create(car);
-                                break;
-                            case ("MOTO"):
+                            }
+                            case ("MOTO") -> {
                                 Product moto = objectMapper.readValue(commandWithArgument[1], Moto.class);
                                 productRepository.create(moto);
-                                break;
+                            }
+                            default -> System.out.println("incorrect vehicle type");
                         }
                     }
                     default -> {
                         System.out.println("incorrect category");
                     }
                 }
-                break;
-            case ("product/getAll"):
-                //System.out.println(productRepository.findAll());
-                PrintUtil.printProducts(productRepository.findAll());
-                break;
-            case ("product/get"):
-                System.out.println(productRepository.findById(Integer.parseInt(commandWithArgument[1])));
-                break;
-            case ("product/delete"):
-                productRepository.delete(Integer.parseInt(commandWithArgument[1]));
-                break;
-            default:
-                System.out.println("Invalid command for Product.");
+            }
+            case ("product/getAll") -> {
+                if (commandWithArgument.length == 1) {
+                    PrintUtil.printProducts(productRepository.findAll());
+                } else {
+                    String[] categoryFind = commandWithArgument[1].split("=");
+                    if (categoryFind[0].equals("category")) {
+                        PrintUtil.printProducts(productRepository.findByCategory(categoryFind[1]));
+                    } else {
+                        System.out.println("incorrect command for searching");
+                    }
+                }
+            }
+            case ("product/get") ->
+                    System.out.println(productRepository.findById(Integer.parseInt(commandWithArgument[1])));
+            case ("product/delete") -> productRepository.delete(Integer.parseInt(commandWithArgument[1]));
+            default -> System.out.println("Invalid command for Product.");
         }
     }
 }
