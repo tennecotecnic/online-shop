@@ -1,6 +1,6 @@
 package com.tennecotecnic.onlineshop.controller;
 
-import com.tennecotecnic.onlineshop.model.User;
+import com.tennecotecnic.onlineshop.model.Buyer;
 import com.tennecotecnic.onlineshop.repository.UserFileRepository;
 import com.tennecotecnic.onlineshop.repository.UserInMemoryRepository;
 import com.tennecotecnic.onlineshop.repository.UserRepository;
@@ -19,8 +19,8 @@ public class UserController {
         String[] commandAndArgument = stringFromReader.split("\\?");
         switch (commandAndArgument[0]) {
             case ("user/create"):
-                User user = objectMapper.readValue(commandAndArgument[1], User.class);
-                userRepository.create(user);
+                Buyer buyer = objectMapper.readValue(commandAndArgument[1], Buyer.class);
+                userRepository.create(buyer);
                 break;
             case ("user/getAll"):
                 PrintUtil.printUsers(userRepository.findAll());
@@ -32,8 +32,8 @@ public class UserController {
                 userRepository.delete(Integer.parseInt(commandAndArgument[1]));
                 break;
             case ("user/update"):
-                User user1 = objectMapper.readValue(commandAndArgument[1], User.class);
-                userRepository.update(user1);
+                Buyer buyer1 = objectMapper.readValue(commandAndArgument[1], Buyer.class);
+                userRepository.update(buyer1);
                 break;
             default:
                 System.out.println("Invalid command for UsersRepository");

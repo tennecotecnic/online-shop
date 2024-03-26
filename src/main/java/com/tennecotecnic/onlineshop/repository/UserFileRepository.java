@@ -1,8 +1,10 @@
 package com.tennecotecnic.onlineshop.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.tennecotecnic.onlineshop.model.Admin;
+import com.tennecotecnic.onlineshop.model.Buyer;
 import com.tennecotecnic.onlineshop.model.User;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -19,12 +21,11 @@ public class UserFileRepository implements UserRepository {
     private StringBuilder listBeforeCreateNewUser = new StringBuilder();
 
 
-    public void create(User user) {
+    public void create(Buyer buyer) {
         generateId();
-        user.setId(currentIdGeneratorValue);
-
+        buyer.setId(currentIdGeneratorValue);
         try {
-            writeToFile(listBeforeCreateNewUser.append(objectMapper.writeValueAsString(user))
+            writeToFile(listBeforeCreateNewUser.append(objectMapper.writeValueAsString(buyer))
                     .append("\r\n").append("###").append(++currentIdGeneratorValue));
             listBeforeCreateNewUser.delete(0, listBeforeCreateNewUser.length());
         } catch (JsonProcessingException e) {
@@ -35,11 +36,23 @@ public class UserFileRepository implements UserRepository {
 
     public Collection<User> findAll() {
         Collection<User> userList = new ArrayList<>();
+        User user = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(FINAL_NAME))) {
             String userLine;
             while ((userLine = reader.readLine()) != null) {
-                User user = objectMapper.readValue(userLine, User.class);
-                userList.add(user);
+                if (!userLine.contains("###")) {
+                    JsonNode rootNode = objectMapper.readTree(userLine);
+                    JsonNode roleNode = rootNode.path("role");
+                    switch(roleNode.asText()) {
+                        case("BUYER") -> {
+                            user = objectMapper.readValue(userLine, Buyer.class);
+                        }
+                        case("ADMIN") -> {
+                            user = objectMapper.readValue(userLine, Admin.class);
+                        }
+                    }
+                    userList.add(user);
+                }
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -48,67 +61,116 @@ public class UserFileRepository implements UserRepository {
     }
 
 
-    public User findById(Integer id) {
+    public User findById(Integer searchingId) {
         boolean isUserFound = false;
         User user = null;
-        String line;
+        String userLine;
         try (BufferedReader reader = new BufferedReader(new FileReader(FINAL_NAME))) {
             while (!isUserFound) {
-                line = reader.readLine();
-                user = objectMapper.readValue(line, User.class);
-                if ((user.getId()).equals(id)) {
-                    isUserFound = true;
+                userLine = reader.readLine();
+                if (!userLine.contains("###")) {
+                    JsonNode rootNode = objectMapper.readTree(userLine);
+                    JsonNode idNode = rootNode.path("id");
+                    if (idNode.asInt() == searchingId) {
+                        isUserFound = true;
+                        JsonNode roleNode = rootNode.path("role");
+                        switch(roleNode.asText()) {
+                            case("BUYER") -> {
+                                user = objectMapper.readValue(userLine, Buyer.class);
+                            }
+                            case("ADMIN") -> {
+                                user = objectMapper.readValue(userLine, Admin.class);
+                            }
+                        }
+                    }
                 }
+            }
+            if (!isUserFound) {
+                System.out.println("There is no buyer with this ID.");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
         return user;
     }
 
 
-    public void update(User user) {
-        StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FINAL_NAME))) {
-
-            String userToWriteLine = objectMapper.writeValueAsString(user);
-
-            String userReadLine;
-            while ((userReadLine = bufferedReader.readLine()) != null) {
-                User userFound = objectMapper.readValue(userReadLine, User.class);
-                if ((user.getId()).equals(userFound.getId())) {
-                    stringBuilder.append(userReadLine.replace(userReadLine, userToWriteLine)).append("\r\n");
-                } else {
-                    stringBuilder.append(userReadLine).append("\r\n");
+    public void update(Buyer updatedBuyer) {
+        StringBuilder rebuildUserRepository = new StringBuilder();
+        String userLine;
+        boolean isUserFound = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader(FINAL_NAME))) {
+            while ((userLine = reader.readLine()) != null) {
+                if (!userLine.contains("###")) {
+                    JsonNode rootNode = objectMapper.readTree(userLine);
+                    JsonNode idNode = rootNode.path("id");
+                    if (idNode.asInt() == updatedBuyer.getId()) {
+                        isUserFound = true;
+                        JsonNode roleNode = rootNode.path("role");
+                        switch(roleNode.asText()) {
+                            case("BUYER") -> {
+                                String buyerToWriteLine = objectMapper.writeValueAsString(updatedBuyer);
+                                rebuildUserRepository.append(buyerToWriteLine).append("\r\n");
+                            }
+                            case("ADMIN") -> {
+                                System.out.println("this is the admin ID");
+                                rebuildUserRepository.append(userLine).append("\r\n");
+                            }
+                        }
+                    } else {
+                        rebuildUserRepository.append(userLine).append("\r\n");
+                    }
                 }
+            }
+            if (!isUserFound) {
+                System.out.println("There is no buyer with this ID. Update is not possible.");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        writeToFile(stringBuilder);
+        writeToFile(rebuildUserRepository);
     }
 
 
     public void delete(Integer id) {
-        StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FINAL_NAME))) {
-            String userLine;
-            while ((userLine = bufferedReader.readLine()) != null) {
-                User user = objectMapper.readValue(userLine, User.class);
-                if (!(user.getId()).equals(id)) {
-                    stringBuilder.append(userLine).append("\r\n");
+        StringBuilder rebuildUserRepository = new StringBuilder();
+        String userLine;
+        boolean isUserFound = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader(FINAL_NAME))) {
+            while ((userLine = reader.readLine()) != null) {
+                if (!userLine.contains("###")) {
+                    JsonNode rootNode = objectMapper.readTree(userLine);
+                    JsonNode idNode = rootNode.path("id");
+                    if (idNode.asInt() != id) {
+                        rebuildUserRepository.append(userLine).append("\r\n");
+                    } else {
+                        isUserFound = true;
+                        JsonNode roleNode = rootNode.path("role");
+                        switch (roleNode.asText()) {
+                            case ("BUYER") -> {
+                                rebuildUserRepository.append("");
+                            }
+                            case ("ADMIN") -> {
+                                System.out.println("this is the admin ID");
+                                rebuildUserRepository.append(userLine).append("\r\n");
+                            }
+                        }
+                    }
                 }
+            }
+            if (!isUserFound) {
+                System.out.println("There is no buyer with this ID. Delete is not possible.");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        writeToFile(stringBuilder);
+        writeToFile(rebuildUserRepository);
     }
 
-    private void writeToFile(StringBuilder stringBuilder) {
+
+    private void writeToFile(StringBuilder rebuildUserRepository) {
         try (FileWriter fileWriter = new FileWriter(FINAL_NAME, false)) {
-            fileWriter.write(stringBuilder.toString());
+            fileWriter.write(rebuildUserRepository.toString());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -130,5 +192,4 @@ public class UserFileRepository implements UserRepository {
         currentIdGeneratorValue = Integer.parseInt(idSetterArgument[0]);
         listBeforeCreateNewUser.append(idSetter[0]);
     }
-
 }

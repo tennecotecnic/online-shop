@@ -3,7 +3,7 @@ package com.tennecotecnic.onlineshop.repository;
 import com.tennecotecnic.onlineshop.model.Product;
 import com.tennecotecnic.onlineshop.model.*;
 import com.tennecotecnic.onlineshop.util.TimeFormatUtil;
-
+import com.tennecotecnic.onlineshop.model.Product.Category;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
