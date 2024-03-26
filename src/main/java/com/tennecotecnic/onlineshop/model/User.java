@@ -1,36 +1,33 @@
 package com.tennecotecnic.onlineshop.model;
 
-import java.time.Instant;
-public class User {
+import com.tennecotecnic.onlineshop.util.TimeFormatUtil;
 
+import java.time.Instant;
+
+public abstract class User {
 
     private Integer id;
     private String name;
     private String surname;
     private String email;
-    private Integer birthYear;
-    private Sex sex;
-    private Integer totalPurchasesCount;
-    private Integer averagePurchasesPerDay;
+    private String password;
+    private Role role;
     private Instant createdAt;
     private Instant updatedAt;
 
 
-
-    public User(Integer id, String name, String surname, String email, Integer birthYear, Sex sex) {
+    protected User(Integer id, String name, String surname, String email, String password) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.birthYear = birthYear;
-        this.sex = sex;
-        this.createdAt = Instant.now();
+        this.password = password;
+        this.createdAt = TimeFormatUtil.timeFormatSetting();
+        this.updatedAt = TimeFormatUtil.timeFormatSetting();
     }
 
-    public User(String name) {
-        this.name = name;
+    protected User() {
     }
-    public User() {}
 
     public Integer getId() {
         return id;
@@ -64,44 +61,12 @@ public class User {
         this.email = email;
     }
 
-    public Integer getBirthYear() {
-        return birthYear;
-    }
-
-    public void setBirthYear(Integer birthYear) {
-        this.birthYear = birthYear;
-    }
-
-    public Sex getSex() {
-        return sex;
-    }
-
-    public void setSex(Sex sex) {
-        this.sex = sex;
-    }
-
-    public Integer getTotalPurchasesCount() {
-        return totalPurchasesCount;
-    }
-
-    public void setTotalPurchasesCount(Integer totalPurchasesCount) {
-        this.totalPurchasesCount = totalPurchasesCount;
-    }
-
     public Instant getCreatedAt() {
         return createdAt;
     }
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Integer getAveragePurchasesPerDay() {
-        return averagePurchasesPerDay;
-    }
-
-    public void setAveragePurchasesPerDay(Integer averagePurchasesPerDay) {
-        this.averagePurchasesPerDay = averagePurchasesPerDay;
     }
 
     public Instant getUpdatedAt() {
@@ -112,9 +77,25 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    @Override
-    public String toString() {
-        return "{\"id\":" + id + ",\"name\":\"" + name + "\",\"surname\":\"" + surname + "\",\"email\":\"" + email + "\",\"birthYear\":" + birthYear + ",\"sex\":\"" + sex + "\",\"totalPurchasesCount\":" + totalPurchasesCount + ",\"averagePurchasesPerDay\":" + averagePurchasesPerDay + "}";
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public enum Role {
+        ADMIN,
+        BUYER
     }
 
 }
