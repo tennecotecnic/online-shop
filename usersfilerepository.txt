@@ -1,13 +1,12 @@
 {"id":1,"name":"John","surname":"Travolta","email":"john@gmail.com","password":"qwerty","role":"BUYER","birthYear":1969,"sex":"MALE","totalPurchasesCount":0,"averagePurchasesPerDay":0}
 {"id":2,"name":"Steeve","surname":"Mcquin","email":"steeve@gmail.com","password":"gfhjkm","role":"BUYER","birthYear":1948,"sex":"MALE","totalPurchasesCount":0,"averagePurchasesPerDay":0}
 {"id":3,"name":"Sunny","surname":"Lane","email":"sun@gmail.com","password":"bootybabe","role":"BUYER","birthYear":1985,"sex":"FEMALE","totalPurchasesCount":0,"averagePurchasesPerDay":0}
-{"id":4,"name":"Mark","surname":"Marques","email":"marco@gmail.com","password":"mark93","role":"BUYER","birthYear":2000,"sex":"MALE","totalPurchasesCount":0,"averagePurchasesPerDay":0}
 {"id":5,"name":"Inokentij","surname":"Smoktunovsky","email":"kesha@gmail.com","password":"inok66","role":"BUYER","birthYear":1928,"sex":"MALE","totalPurchasesCount":0,"averagePurchasesPerDay":0}
 {"id":6,"name":"Rick","surname":"Sanchez","email":"rik-cucumber@gmail.com","password":"c137rick","role":"BUYER","birthYear":1950,"sex":"MALE","totalPurchasesCount":0,"averagePurchasesPerDay":0}
-{"id":7,"name":"Monika","surname":"Belucchi","email":"belka@gmail.com","password":"matrix","role":"BUYER","birthYear":1965,"sex":"FEMALE","totalPurchasesCount":0,"averagePurchasesPerDay":0}
 {"id":8,"name":"Sam","surname":"Vinchester","email":"sammy@gmail.com","password":"padaleki","role":"BUYER","birthYear":1985,"sex":"MALE","totalPurchasesCount":0,"averagePurchasesPerDay":0}
 {"id":9,"name":"Din","surname":"Vinchester","email":"din@gmail.com","password":"crowly","role":"BUYER","birthYear":1980,"sex":"MALE","totalPurchasesCount":0,"averagePurchasesPerDay":0}
-{"id":10,"name":"Maria","surname":"Ivanova","email":"masha@gmail.com","password":"prostomaria","role":"BUYER","birthYear":2005,"sex":"FEMALE","totalPurchasesCount":0,"averagePurchasesPerDay":0}
+{"id":10,"name":"MaryYY","surname":"Ivanko","email":null,"password":null,"role":"BUYER","createdAt":null,"updatedAt":null,"birthYear":null,"sex":null,"totalPurchasesCount":0,"averagePurchasesPerDay":0}
 {"id":11,"name":"Valdemar","surname":"Valdemarov","email":"volder@gmail.com","password":"minecraft","role":"ADMIN"}
 {"id":12,"name":"Fireball","surname":"","email":"12345@gmail.com","password":"borninussr","role":"ADMIN"}
-###13
+{"id":13,"name":"MaryYY","surname":null,"email":null,"password":null,"role":null,"createdAt":null,"updatedAt":null,"birthYear":null,"sex":null,"totalPurchasesCount":0,"averagePurchasesPerDay":0}
+###14

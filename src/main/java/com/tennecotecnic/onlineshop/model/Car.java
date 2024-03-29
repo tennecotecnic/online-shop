@@ -32,5 +32,4 @@ public class Car  extends  Vehicle {
                 + "\",\"vehicleType\":\"" + getVehicleType() + "\"}";
                // + "\",\"createdAt\":\"" + getCreatedAt() + "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
     }
-
 }

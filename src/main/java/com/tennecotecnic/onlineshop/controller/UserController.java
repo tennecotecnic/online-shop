@@ -5,9 +5,7 @@ import com.tennecotecnic.onlineshop.repository.UserFileRepository;
 import com.tennecotecnic.onlineshop.repository.UserInMemoryRepository;
 import com.tennecotecnic.onlineshop.repository.UserRepository;
 import com.tennecotecnic.onlineshop.util.PrintUtil;
-
 import java.io.IOException;
-
 import static com.tennecotecnic.onlineshop.OnlineShop.objectMapper;
 
 public class UserController {

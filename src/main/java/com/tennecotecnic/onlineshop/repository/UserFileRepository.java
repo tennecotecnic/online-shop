@@ -66,13 +66,11 @@ public class UserFileRepository implements UserRepository {
         User user = null;
         String userLine;
         try (BufferedReader reader = new BufferedReader(new FileReader(FINAL_NAME))) {
-            while (!isUserFound) {
-                userLine = reader.readLine();
+            while (!isUserFound && ((userLine = reader.readLine()) != null)) {
                 if (!userLine.contains("###")) {
                     JsonNode rootNode = objectMapper.readTree(userLine);
                     JsonNode idNode = rootNode.path("id");
                     if (idNode.asInt() == searchingId) {
-                        isUserFound = true;
                         JsonNode roleNode = rootNode.path("role");
                         switch(roleNode.asText()) {
                             case("BUYER") -> {
@@ -82,11 +80,9 @@ public class UserFileRepository implements UserRepository {
                                 user = objectMapper.readValue(userLine, Admin.class);
                             }
                         }
+                        isUserFound = true;
                     }
                 }
-            }
-            if (!isUserFound) {
-                System.out.println("There is no buyer with this ID.");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -120,6 +116,8 @@ public class UserFileRepository implements UserRepository {
                     } else {
                         rebuildUserRepository.append(userLine).append("\r\n");
                     }
+                } else {
+                    rebuildUserRepository.append(userLine);
                 }
             }
             if (!isUserFound) {
@@ -156,6 +154,8 @@ public class UserFileRepository implements UserRepository {
                             }
                         }
                     }
+                } else {
+                    rebuildUserRepository.append("###");
                 }
             }
             if (!isUserFound) {
