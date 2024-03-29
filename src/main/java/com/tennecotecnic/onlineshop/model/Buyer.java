@@ -17,7 +17,9 @@ public class Buyer extends  User {
         this.sex = sex;
     }
 
-    public Buyer() {}
+    public Buyer() {
+        this.setRole(Role.BUYER);
+    }
 
 
     public Integer getBirthYear() {

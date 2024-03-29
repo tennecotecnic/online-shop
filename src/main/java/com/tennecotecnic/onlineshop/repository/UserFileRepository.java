@@ -50,11 +50,12 @@ public class UserFileRepository implements UserRepository {
                         case("ADMIN") -> {
                             user = objectMapper.readValue(userLine, Admin.class);
                         }
+                        default -> throw new RuntimeException("role null");
                     }
                     userList.add(user);
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException | RuntimeException e) {
             System.out.println(e.getMessage());
         }
         return userList;
