@@ -2,7 +2,6 @@ package com.tennecotecnic.onlineshop.util;
 
 import com.tennecotecnic.onlineshop.model.Product;
 import com.tennecotecnic.onlineshop.model.User;
-
 import java.util.Collection;
 
 public class PrintUtil {

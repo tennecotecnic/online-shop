@@ -74,4 +74,12 @@ public abstract class Product {
         this.updatedBy = updatedBy;
     }
 
+    public enum Category {
+        BOOK,
+        VEHICLE,
+        FOOD
+
+    }
+
+
 }

@@ -72,4 +72,5 @@ public abstract class Vehicle  extends Product {
     public void setVehicleType(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
     }
+
 }

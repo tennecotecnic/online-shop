@@ -46,9 +46,13 @@ public class Book extends Product {
 
     @Override
     public String toString() {
-        return "{\"id\":" + getId() + ",\"category\":\"" + getCategory() + "\",\"price\":" + getPrice()
-                + ",\"isbn\":\"" + isbn + "\",\"author\":\"" + author
+        return "{\"id\":" + getId()
+                + ",\"category\":\"" + getCategory()
+                + "\",\"price\":" + getPrice()
+                + ",\"isbn\":\"" + isbn
+                + "\",\"author\":\"" + author
                 + "\",\"title\":\"" + title + "\"}";
-                //+ "\",\"createdAt\":\"" + getCreatedAt() + "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
+
+              //+ "\",\"createdAt\":\"" + getCreatedAt() + "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
     }
 }

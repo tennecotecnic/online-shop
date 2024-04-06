@@ -8,7 +8,6 @@ import com.tennecotecnic.onlineshop.repository.ProductRepository;
 import com.tennecotecnic.onlineshop.util.PrintUtil;
 
 import static com.tennecotecnic.onlineshop.OnlineShop.objectMapper;
-import static com.tennecotecnic.onlineshop.model.Category.FOOD;
 
 import java.io.IOException;
 
