@@ -25,8 +25,11 @@ public class UserFileRepository implements UserRepository {
         generateId();
         buyer.setId(currentIdGeneratorValue);
         try {
-            writeToFile(listBeforeCreateNewUser.append(objectMapper.writeValueAsString(buyer))
-                    .append("\r\n").append("###").append(++currentIdGeneratorValue));
+            writeToFile(listBeforeCreateNewUser
+                    .append(objectMapper.writeValueAsString(buyer))
+                    .append("\r\n")
+                    .append("###")
+                    .append(++currentIdGeneratorValue));
             listBeforeCreateNewUser.delete(0, listBeforeCreateNewUser.length());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);

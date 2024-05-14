@@ -26,8 +26,11 @@ public class ProductFileRepository  implements  ProductRepository {
         product.setId(currentIdGeneratorValue);
 
         try {
-            writeToFile(listBeforeCreateNewProduct.append(objectMapper.writeValueAsString(product))
-                    .append("\r\n").append("###").append(++currentIdGeneratorValue));
+            writeToFile(listBeforeCreateNewProduct
+                    .append(objectMapper.writeValueAsString(product))
+                    .append("\r\n")
+                    .append("###")
+                    .append(++currentIdGeneratorValue));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

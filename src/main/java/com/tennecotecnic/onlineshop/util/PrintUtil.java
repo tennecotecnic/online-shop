@@ -6,16 +6,9 @@ import java.util.Collection;
 
 public class PrintUtil {
 
-    public static void printUsers(Collection<User> array) {
-        for (User user : array) {
-            System.out.println(user);
-        }
-    }
-
-
-    public static void printProducts(Collection<Product> array) {
-        for (Product product : array) {
-            System.out.println(product);
+    public static <T> void print(Collection<T> collection) {
+        for (T element : collection) {
+            System.out.println(element);
         }
     }
 }
