@@ -1,7 +1,7 @@
 package com.tennecotecnic.onlineshop.repository;
 
-import com.tennecotecnic.onlineshop.model.Buyer;
-import com.tennecotecnic.onlineshop.model.User;
+import com.tennecotecnic.onlineshop.model.user.Buyer;
+import com.tennecotecnic.onlineshop.model.user.User;
 
 import java.io.IOException;
 import java.util.Collection;

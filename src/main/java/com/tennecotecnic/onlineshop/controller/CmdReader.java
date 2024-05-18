@@ -1,14 +1,12 @@
 package com.tennecotecnic.onlineshop.controller;
 
-import com.tennecotecnic.onlineshop.model.User;
 import com.tennecotecnic.onlineshop.repository.UserFileRepository;
 import com.tennecotecnic.onlineshop.repository.UserRepository;
 import com.tennecotecnic.onlineshop.service.LoginService;
+import com.tennecotecnic.onlineshop.service.PurchaseService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collection;
 
 
 public class CmdReader {
@@ -19,8 +17,8 @@ public class CmdReader {
     private LoginController loginController = new LoginController(userRepository, loginService);
     private UserController userController = new UserController(userRepository, loginService);
     private ProductController productController = new ProductController(loginService);
-
-
+   // private PurchaseFileRepository purchaseFileRepository = new PurchaseFileRepository();
+    private PurchaseService purchaseService = new PurchaseService(loginService);
 
 
     public void readFromCmd() throws Exception {

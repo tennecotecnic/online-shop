@@ -1,7 +1,6 @@
-package com.tennecotecnic.onlineshop.model;
+package com.tennecotecnic.onlineshop.model.user;
 
-import java.time.Instant;
-public class Buyer extends  User {
+public class Buyer extends User {
 
     private Integer birthYear;
     private Sex sex;
@@ -53,6 +52,8 @@ public class Buyer extends  User {
     public void setAveragePurchasesPerDay(Integer averagePurchasesPerDay) {
         this.averagePurchasesPerDay = averagePurchasesPerDay;
     }
+
+
     @Override
     public String toString() {
         return "{\"id\":" + getId()
@@ -66,5 +67,4 @@ public class Buyer extends  User {
                 + "\",\"totalPurchasesCount\":" + totalPurchasesCount
                 + ",\"averagePurchasesPerDay\":" + averagePurchasesPerDay + "}";
     }
-
 }

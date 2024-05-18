@@ -1,4 +1,6 @@
-package com.tennecotecnic.onlineshop.model;
+package com.tennecotecnic.onlineshop.model.product;
+
+import com.tennecotecnic.onlineshop.util.MyStringUtil;
 
 public class Book extends Product {
 
@@ -54,5 +56,10 @@ public class Book extends Product {
                 + "\",\"title\":\"" + title + "\"}";
 
               //+ "\",\"createdAt\":\"" + getCreatedAt() + "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
+    }
+
+
+    public String getShortInfo(){
+        return MyStringUtil.cutstring(author, 9) + MyStringUtil.cutstring(title, 9);
     }
 }

@@ -1,4 +1,6 @@
-package com.tennecotecnic.onlineshop.model;
+package com.tennecotecnic.onlineshop.model.product;
+
+import com.tennecotecnic.onlineshop.util.MyStringUtil;
 
 public abstract class Vehicle  extends Product {
 
@@ -71,6 +73,10 @@ public abstract class Vehicle  extends Product {
 
     public void setVehicleType(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
+    }
+
+    public String getShortInfo(){
+        return MyStringUtil.cutstring(brand, 9) + MyStringUtil.cutstring(model, 9);
     }
 
 }

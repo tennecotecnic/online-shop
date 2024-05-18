@@ -1,6 +1,6 @@
 package com.tennecotecnic.onlineshop.service;
 
-import com.tennecotecnic.onlineshop.model.User;
+import com.tennecotecnic.onlineshop.model.user.User;
 import com.tennecotecnic.onlineshop.repository.UserRepository;
 import com.tennecotecnic.onlineshop.util.TimeFormatUtil;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class LoginService {
     private UserRepository userRepository;
-    private HashMap<String, Instant> loginedUsers = new HashMap<>();
+    private HashMap<Integer, Instant> loginedUsers = new HashMap<>();
 
     public LoginService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -28,8 +28,9 @@ public class LoginService {
                 if (password.equals(foundUser.getPassword())) {
                     Instant timeLogout = TimeFormatUtil
                             .timeFormatSetting()
-                            .plusSeconds(180);
-                    loginedUsers.put(email, timeLogout);
+                            .plusSeconds(60);
+                    loginedUsers.put(foundUser.getId(), timeLogout);
+                    System.out.println("Hi, " + foundUser.getName());
                     break;
                 } else {
                     System.out.println("password not correct");
@@ -43,14 +44,14 @@ public class LoginService {
     }
 
 
-    public void logout (String email) {
-        loginedUsers.remove(email);
+    public void logout (Integer userId) {
+        loginedUsers.remove(userId);
     }
 
 
-    public boolean checkLogin(String email) throws IOException {
+    public boolean checkLogin(Integer userId) throws IOException {
         boolean isUserLogined = true;
-        if (loginedUsers.get(email).compareTo(TimeFormatUtil.timeFormatSetting()) < 0) {
+        if (loginedUsers.get(userId).compareTo(TimeFormatUtil.timeFormatSetting()) < 0) {
             isUserLogined = false;
             System.out.println("Authentication expired. Please login.");
         }
@@ -58,11 +59,11 @@ public class LoginService {
     }
 
 
-    public boolean checkAdminRole (String email) throws IOException {
+    public boolean checkAdminRole (Integer userId) throws IOException {
         boolean userIsAdmin = false;
         Collection<User> users= userRepository.findAll();
         for (User foundUser: users) {
-            if ((foundUser.getEmail()).equals(email)) {
+            if ((foundUser.getId()).equals(userId)) {
                 if (foundUser.getRole().equals(User.Role.ADMIN)) {
                     userIsAdmin = true;
                     break;
