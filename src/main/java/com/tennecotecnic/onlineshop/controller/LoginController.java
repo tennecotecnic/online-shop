@@ -9,9 +9,8 @@ public class LoginController {
 
     private LoginService loginService;
 
-    public LoginController(UserRepository userRepository, LoginService loginService) {
+    public LoginController(LoginService loginService) {
         this.loginService = loginService;
-        // this.userRepository = userRepository;
     }
 
     public void processCommand(String stringFromReader)  throws IOException {

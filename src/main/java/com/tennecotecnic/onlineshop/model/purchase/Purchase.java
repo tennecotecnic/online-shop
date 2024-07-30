@@ -16,6 +16,7 @@ public class Purchase {
     private final Instant createdAt;
     private Instant updatedAt;
     private Status status = Status.UNPAID;
+    private float totalSumm = 0;
 
     public Purchase() {
         createdAt = TimeFormatUtil.timeFormatSetting();
@@ -95,5 +96,13 @@ public class Purchase {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public float getTotalSumm() {
+        return totalSumm;
+    }
+
+    public void setTotalSumm(float totalSumm) {
+        this.totalSumm = totalSumm;
     }
 }
