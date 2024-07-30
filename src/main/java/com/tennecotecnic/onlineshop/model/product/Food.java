@@ -1,6 +1,6 @@
-package com.tennecotecnic.onlineshop.model;
+package com.tennecotecnic.onlineshop.model.product;
 
-import java.time.Instant;
+import com.tennecotecnic.onlineshop.util.MyStringUtil;
 
 
 public class Food extends Product {
@@ -42,4 +42,7 @@ public class Food extends Product {
                 + ",\"name\":\"" + name + "\",\"brand\":\"" + brand + "\"}";
     }
 
+    public String getShortInfo(){
+        return MyStringUtil.cutstring(brand, 9) + MyStringUtil.cutstring(name, 9);
+    }
 }

@@ -1,6 +1,6 @@
 package com.tennecotecnic.onlineshop.repository;
 
-import com.tennecotecnic.onlineshop.model.Product;
+import com.tennecotecnic.onlineshop.model.product.Product;
 
 import java.io.IOException;
 import java.util.Collection;

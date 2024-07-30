@@ -1,6 +1,6 @@
-package com.tennecotecnic.onlineshop.model;
+package com.tennecotecnic.onlineshop.model.product;
 
-public class Car  extends  Vehicle {
+public class Car  extends Vehicle {
 
     private String bodyType;
 
@@ -12,7 +12,8 @@ public class Car  extends  Vehicle {
     }
 
 
-    public Car(){}
+    public Car() {
+    }
 
 
     public String getBodyType() {
@@ -30,6 +31,6 @@ public class Car  extends  Vehicle {
                 + "\",\"model\":\"" + getModel() + "\",\"maxSpeed\":" + getMaxSpeed()
                 + ",\"energyType\":\"" + getEnergyType() + "\",\"bodyType\":\"" + bodyType
                 + "\",\"vehicleType\":\"" + getVehicleType() + "\"}";
-               // + "\",\"createdAt\":\"" + getCreatedAt() + "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
+        // + "\",\"createdAt\":\"" + getCreatedAt() + "\",\"updatedAt\":\"" + getUpdatedAt() + "\"}";
     }
 }

@@ -1,4 +1,4 @@
-package com.tennecotecnic.onlineshop.model;
+package com.tennecotecnic.onlineshop.model.product;
 
 public class Moto extends Vehicle {
 

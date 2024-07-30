@@ -1,9 +1,9 @@
 package com.tennecotecnic.onlineshop.repository;
 
-import com.tennecotecnic.onlineshop.model.Admin;
-import com.tennecotecnic.onlineshop.model.Sex;
-import com.tennecotecnic.onlineshop.model.Buyer;
-import com.tennecotecnic.onlineshop.model.User;
+import com.tennecotecnic.onlineshop.model.user.Admin;
+import com.tennecotecnic.onlineshop.model.user.Sex;
+import com.tennecotecnic.onlineshop.model.user.Buyer;
+import com.tennecotecnic.onlineshop.model.user.User;
 import com.tennecotecnic.onlineshop.util.TimeFormatUtil;
 import java.util.Collection;
 import java.util.HashMap;
@@ -27,7 +27,7 @@ public class UserInMemoryRepository implements UserRepository {
         userById.put(9, new Buyer(9, "Din", "Vinchester", "din@gmail.com", "crowly", 1980, Sex.MALE));
         userById.put(10, new Buyer(10, "Maria", "Ivanova", "masha@gmail.com", "prostomaria", 2005, Sex.FEMALE));
         userById.put(11, new Admin(11, "Valdemar", "Valdemarov", "volder@gmail.com", "minecraft"));
-        userById.put(12, new Admin(12, "Fireball", "", "12345@gmail.com", "borninussr"));
+        userById.put(12, new Admin(12, "Igor", "Nikolaev", "12345@gmail.com", "borninussr"));
     }
 
     public void create(Buyer buyer) {

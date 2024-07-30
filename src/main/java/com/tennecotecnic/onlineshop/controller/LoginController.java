@@ -9,9 +9,8 @@ public class LoginController {
 
     private LoginService loginService;
 
-    public LoginController(UserRepository userRepository, LoginService loginService) {
+    public LoginController(LoginService loginService) {
         this.loginService = loginService;
-        // this.userRepository = userRepository;
     }
 
     public void processCommand(String stringFromReader)  throws IOException {
@@ -21,7 +20,7 @@ public class LoginController {
                 loginService.login(commandWithArgument[1]);
             }
             case("logout") -> {
-                loginService.logout(commandWithArgument[1]);
+                loginService.logout(Integer.parseInt(commandWithArgument[1]));
             }
         }
     }

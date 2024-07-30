@@ -2,9 +2,9 @@ package com.tennecotecnic.onlineshop.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.tennecotecnic.onlineshop.model.Admin;
-import com.tennecotecnic.onlineshop.model.Buyer;
-import com.tennecotecnic.onlineshop.model.User;
+import com.tennecotecnic.onlineshop.model.user.Admin;
+import com.tennecotecnic.onlineshop.model.user.Buyer;
+import com.tennecotecnic.onlineshop.model.user.User;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -159,7 +159,7 @@ public class UserFileRepository implements UserRepository {
                         }
                     }
                 } else {
-                    rebuildUserRepository.append("###");
+                    rebuildUserRepository.append(userLine);
                 }
             }
             if (!isUserFound) {

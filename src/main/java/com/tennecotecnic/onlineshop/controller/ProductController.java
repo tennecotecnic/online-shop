@@ -1,9 +1,8 @@
 package com.tennecotecnic.onlineshop.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.tennecotecnic.onlineshop.model.*;
+import com.tennecotecnic.onlineshop.model.product.*;
 import com.tennecotecnic.onlineshop.repository.ProductFileRepository;
-import com.tennecotecnic.onlineshop.repository.ProductInMemoryRepository;
 import com.tennecotecnic.onlineshop.repository.ProductRepository;
 import com.tennecotecnic.onlineshop.service.LoginService;
 import com.tennecotecnic.onlineshop.util.PrintUtil;
@@ -26,8 +25,8 @@ public class ProductController {
         String[] commandWithArgument = stringFromReader.split("\\?");
         switch (commandWithArgument[0]) {
             case ("product/create") -> {
-                if (loginService.checkLogin(commandWithArgument[2])
-                        && loginService.checkAdminRole(commandWithArgument[2])) {
+                if (loginService.checkLogin(Integer.parseInt(commandWithArgument[2]))
+                        && loginService.checkAdminRole(Integer.parseInt(commandWithArgument[2]))) {
                     JsonNode rootNode = objectMapper.readTree(commandWithArgument[1]);
                     JsonNode categoryNode = rootNode.path("category");
                     switch (categoryNode.asText()) {
@@ -60,7 +59,7 @@ public class ProductController {
                 }
             }
             case ("product/getAll") -> {
-                if (loginService.checkLogin(commandWithArgument[2])) {
+                if (loginService.checkLogin(Integer.parseInt(commandWithArgument[2]))) {
                     if (commandWithArgument.length == 2) {
                         PrintUtil.print(productRepository.findAll());
                     } else {
@@ -74,13 +73,13 @@ public class ProductController {
                 }
             }
             case ("product/get") -> {
-                if (loginService.checkLogin(commandWithArgument[2])) {
+                if (loginService.checkLogin(Integer.parseInt(commandWithArgument[2]))) {
                     System.out.println(productRepository.findById(Integer.parseInt(commandWithArgument[1])));
                 }
             }
             case ("product/delete") -> {
-                if (loginService.checkLogin(commandWithArgument[2])
-                        && loginService.checkAdminRole(commandWithArgument[2])) {
+                if (loginService.checkLogin(Integer.parseInt(commandWithArgument[2]))
+                        && loginService.checkAdminRole(Integer.parseInt(commandWithArgument[2]))) {
                     System.out.println(productRepository.findById(Integer.parseInt(commandWithArgument[1])));
                     productRepository.delete(Integer.parseInt(commandWithArgument[1]));
                 }

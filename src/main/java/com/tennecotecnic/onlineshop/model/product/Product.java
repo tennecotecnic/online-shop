@@ -1,4 +1,4 @@
-package com.tennecotecnic.onlineshop.model;
+package com.tennecotecnic.onlineshop.model.product;
 
 import com.tennecotecnic.onlineshop.util.TimeFormatUtil;
 
@@ -78,8 +78,7 @@ public abstract class Product {
         BOOK,
         VEHICLE,
         FOOD
-
     }
 
-
+    public abstract String getShortInfo();
 }

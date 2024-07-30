@@ -1,0 +1,24 @@
+{"id":1,"category":"BOOK","price":12.5,"isbn":"5-8451-0512-9","author":"Joanne Rowling","title":"Harry Potter and the Philosopher's Stone","createdAt":"2024-03-14T18:43:43.602Z","updatedAt":"2024-03-14T18:43:43.602Z"}
+{"id":2,"category":"VEHICLE","price":250000.0,"weight":1600,"brand":"Ferrari","model":"F40","maxSpeed":315,"energyType":"FUEL","bodyType":"sportcar","vehicleType":"CAR"}
+{"id":3,"category":"FOOD","price":4.25,"name":"spagetti","brand":"Barilla"}
+{"id":4,"category":"VEHICLE","price":25000.0,"weight":175,"brand":"Triumph","model":"Scrambler","maxSpeed":200,"energyType":"FUEL","wheelCount":2,"withSideCar":false","vehicleType":"MOTO"}
+
+
+user/update?{"id":7,"name":"MaryYY","surname":"Ivanko","role":"ADMIN"}
+user/update?{"id":7,"name":"MaryYY","surname":"Ivanko","role":"BUYER"}
+{"id":11,"name":"Valdemar","surname":"Valdemarov","email":"volder@gmail.com","password":"minecraft","role":"ADMIN"}
+{"id":9,"name":"Din","surname":"Vinchester","email":"din@gmail.com","password":"crowly"}
+
+login/din@gmail.com&crowly
+login/volder@gmail.com&minecraft
+
+user/get?2?volder@gmail.com
+user/delete?2?volder@gmail.com
+
+logout/din@gmail.com
+
+product/getAll?category=FOOD?volder@gmail.com
+product/getAll?category=FOOD?din@gmail.com
+
+user/getAll?din@gmail.com
+user/getAll?volder@gmail.com
